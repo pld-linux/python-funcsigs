@@ -1,0 +1,11 @@
+--- funcsigs-0.4/setup.py.orig	2016-03-05 23:24:32.065793138 +0100
++++ funcsigs-0.4/setup.py	2016-03-05 23:24:52.449125617 +0100
+@@ -50,6 +50,6 @@
+         'Programming Language :: Python :: Implementation :: PyPy',
+         'Topic :: Software Development :: Libraries :: Python Modules'
+     ],
+-    tests_require = [] if sys.version_info[0] > 2 else ['unittest2'],
+-    test_suite = "tests" if sys.version_info[0] > 2 else 'unittest2.collector'
++    tests_require = [],
++    test_suite = "tests"
+ )
