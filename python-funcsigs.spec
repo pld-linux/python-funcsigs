@@ -9,7 +9,7 @@ Summary:	Python function signatures from PEP362 for older Python versions
 Summary(pl.UTF-8):	Sygnatury funkcji w Pythonie z PEP362 dla starszych wersji Pythona
 Name:		python-funcsigs
 Version:	0.4
-Release:	1
+Release:	2
 License:	Apache v2.0
 Group:		Libraries/Python
 #Source0Download: https://pypi.python.org/pypi/funcsigs
