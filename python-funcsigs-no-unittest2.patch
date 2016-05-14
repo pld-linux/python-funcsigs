@@ -1,11 +1,45 @@
---- funcsigs-0.4/setup.py.orig	2016-03-05 23:24:32.065793138 +0100
-+++ funcsigs-0.4/setup.py	2016-03-05 23:24:52.449125617 +0100
-@@ -50,6 +50,6 @@
+--- funcsigs-1.0.2/setup.py.orig	2016-05-13 22:45:56.749412801 +0200
++++ funcsigs-1.0.2/setup.py	2016-05-14 08:20:21.614633114 +0200
+@@ -47,6 +47,6 @@
          'Programming Language :: Python :: Implementation :: PyPy',
          'Topic :: Software Development :: Libraries :: Python Modules'
      ],
--    tests_require = [] if sys.version_info[0] > 2 else ['unittest2'],
--    test_suite = "tests" if sys.version_info[0] > 2 else 'unittest2.collector'
+-    tests_require = ['unittest2'],
+-    test_suite = 'unittest2.collector',
 +    tests_require = [],
-+    test_suite = "tests"
++    test_suite = 'tests'
  )
+--- funcsigs-1.0.2/tests/test_formatannotation.py.orig	2016-05-14 10:59:38.724232040 +0200
++++ funcsigs-1.0.2/tests/test_formatannotation.py	2016-05-14 10:59:48.217564975 +0200
+@@ -1,6 +1,6 @@
+ import funcsigs
+ 
+-import unittest2 as unittest
++import unittest
+ 
+ class TestFormatAnnotation(unittest.TestCase):
+     def test_string (self):
+--- funcsigs-1.0.2/tests/test_funcsigs.py.orig	2016-05-14 11:00:25.777563398 +0200
++++ funcsigs-1.0.2/tests/test_funcsigs.py	2016-05-14 11:00:30.480896534 +0200
+@@ -1,4 +1,4 @@
+-import unittest2 as unittest
++import unittest
+ 
+ import doctest
+ import sys
+--- funcsigs-1.0.2/tests/test_inspect.py.orig	2016-05-14 11:01:12.574228102 +0200
++++ funcsigs-1.0.2/tests/test_inspect.py	2016-05-14 11:03:33.017555541 +0200
+@@ -4,10 +4,12 @@
+ import functools
+ import sys
+ 
+-import unittest2 as unittest
++import unittest
+ 
+ import funcsigs as inspect
+ 
++if 'assertRaisesRegex' not in unittest.TestCase.__dict__:
++    unittest.TestCase.assertRaisesRegex = unittest.TestCase.assertRaisesRegexp
+ 
+ class TestSignatureObject(unittest.TestCase):
+     @staticmethod
