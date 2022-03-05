@@ -21,15 +21,16 @@ BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with python2}
 BuildRequires:	python-modules >= 1:2.6
-BuildRequires:	python-setuptools
+BuildRequires:	python-setuptools >= 1:17.1
 %if "%{py_ver}" < "2.7"
 BuildRequires:	python-unittest2
 %endif
 %endif
 %if %{with python3}
-BuildRequires:	python3-modules >= 1:3.2
-BuildRequires:	python3-setuptools
+BuildRequires:	python3-modules >= 1:3.3
+BuildRequires:	python3-setuptools >= 1:17.1
 %endif
+%{?with_doc:BuildRequires:	sphinx-pdg-2}
 Requires:	python-modules >= 1:2.6
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -47,7 +48,7 @@ Pythona 3.3. Jest zgodny z Pythonem 2.6, 2.7 oraz 3.2 i nowszymi.
 Summary:	Python function signatures from PEP362 for older Python versions
 Summary(pl.UTF-8):	Sygnatury funkcji w Pythonie z PEP362 dla starszych wersji Pythona
 Group:		Libraries/Python
-Requires:	python3-modules >= 1:3.2
+Requires:	python3-modules >= 1:3.3
 
 %description -n python3-funcsigs
 funcsigs module is a backport of the PEP 362 function signature
@@ -91,8 +92,8 @@ Dokumentacja API modułu funcsigs.
 %endif
 
 %if %{with doc}
-%{__make} -C docs -j1 html
-%{__rm} -r docs/_build/html/{_sources,.buildinfo}
+%{__make} -C docs html \
+	SPHINXBUILD=sphinx-build-2
 %endif
 
 %install
@@ -130,5 +131,5 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with doc}
 %files apidocs
 %defattr(644,root,root,755)
-%doc docs/_build/html/*
+%doc docs/_build/html/{_static,*.html,*.js}
 %endif
