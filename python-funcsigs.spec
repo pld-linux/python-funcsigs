@@ -79,7 +79,7 @@ Dokumentacja API modułu funcsigs.
 %prep
 %setup -q -n funcsigs-%{version}
 %if "%{py_ver}" >= "2.7"
-%patch0 -p1
+%patch -P0 -p1
 %endif
 
 %build
